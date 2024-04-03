@@ -34,6 +34,10 @@
     .color-option[data-color="lightgreen"] {
       background-color: lightgreen;
     }
+
+    .highlighted {
+      background-color: transparent;
+    }
   </style>
 </head>
 <body>
@@ -46,7 +50,8 @@
               <div class="abbi-glossary glossary-list hidden"></div></div>
 					</div>
 				</div>
- <div id="color-options">
+
+  <div id="color-options">
     <div class="color-option" data-color="yellow"></div>
     <div class="color-option" data-color="pink"></div>
     <div class="color-option" data-color="lightblue"></div>
@@ -92,7 +97,9 @@
       option.addEventListener('click', () => {
         const selectedRange = window.getSelection().getRangeAt(0);
         const highlightedElement = selectedRange.startContainer.parentNode;
-        highlightedElement.style.backgroundColor = option.dataset.color;
+        if (highlightedElement.classList.contains('highlighted')) {
+          highlightedElement.style.backgroundColor = option.dataset.color;
+        }
         colorOptions.style.display = 'none';
       });
     });
